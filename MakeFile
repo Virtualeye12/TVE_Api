@@ -1,0 +1,23 @@
+# -*- MakeFile -*-
+# -*- commands for docker build, docker run, docker stop, docker down -*-
+
+docker_files
+
+build-api:
+    # docker build command
+	docker build -f docker_files/app.Dockerfile -t mlapis:app-0.1 .
+build:
+    # use make build for docker build
+    build-api
+
+run:
+    # use make run for docker run
+	docker-compose -f docker-compose.yml up
+
+stop:
+    # use make stop for docker stop
+	docker-compose -f docker-compose.yml stop
+
+down:
+    # use make down for docker down
+	docker-compose -f docker-compose.yml down

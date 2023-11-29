@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  web:
+    container_name: "ml-api"
+    restart: always # if break or shutdown restart immediately
+    ports:
+      - "8889:80" # Linking port 80(docker internal port) to 8888(system/machine port)
+    image: mlapis:app-0.1
+    env_file:
+      - ".env" # .env file for setup environment
+    environment:
+      - SERVER_NAME=${DOMAIN?Variable not set} # server name
+      - SERVER_HOST=https://${DOMAIN?Variable not set} # server host
+      - MAX_WORKERS=2 # number of workers
+      - WORKERS_PER_CORE=0.5 # 2 workers in 2 core
